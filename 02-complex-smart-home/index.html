@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <title>Welcome, Smart Home</title>
+  </head>
+  <body>
+    <h1>Welcome, Smart Home</h1>
+    <main>
+      <section>
+        <header><h2>Kitchen</h2></header>
+        <table>
+          <caption>
+            Kitchen smart status
+          </caption>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lights</td>
+              <td id="kitchen-lights">[unknown]</td>
+            </tr>
+            <tr>
+              <td>Blinds</td>
+              <td id="kitchen-blinds">[unknown]</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Timestamp</td>
+              <td id="kitchen-timestamp">[unknown]</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <section>
+        <header><h2>Living Room</h2></header>
+        <table>
+          <caption>
+            Living room smart status
+          </caption>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lights</td>
+              <td id="livingroom-lights">[unknown]</td>
+            </tr>
+            <tr>
+              <td>Curtains</td>
+              <td id="livingroom-curtains">[unknown]</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Timestamp</td>
+              <td id="livingroom-timestamp">[unknown]</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+
+      <section>
+        <header><h2>Bedroom</h2></header>
+        <table>
+          <caption>
+            Living room smart status
+          </caption>
+          <thead>
+            <tr>
+              <th>Device</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Lights</td>
+              <td id="bedroom-lights">[unknown]</td>
+            </tr>
+            <tr>
+              <td>Curtains</td>
+              <td id="bedroom-curtains">[unknown]</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Timestamp</td>
+              <td id="bedroom-timestamp">[unknown]</td>
+            </tr>
+          </tfoot>
+        </table>
+      </section>
+    </main>
+
+    <script>
+      // Subscribing to our express endpoint using the native EventSource
+      const source = new EventSource('/smart-home')
+
+      // This is the magic - whenever a "message" event fires
+      // Except, in this example, the name of the event we are listening to is not "message"
+      // it is "kitchen", "livingroom" or "bedroom"
+      source.addEventListener('kitchen', function (e) {
+        const { blinds, lights } = getJSONFromEvent(e)
+        getTableCell('kitchen', 'blinds').innerHTML = blinds
+        getTableCell('kitchen', 'lights').innerHTML = lights
+        getTableCell('kitchen', 'timestamp').innerHTML = e.timeStamp.toFixed(0)
+      })
+
+      source.addEventListener('livingroom', function (e) {
+        const { curtains, lights } = getJSONFromEvent(e)
+        getTableCell('livingroom', 'curtains').innerHTML = curtains
+        getTableCell('livingroom', 'lights').innerHTML = lights
+        getTableCell('livingroom', 'timestamp').innerHTML =
+          e.timeStamp.toFixed(0)
+      })
+
+      source.addEventListener('bedroom', function (e) {
+        const { curtains, lights } = getJSONFromEvent(e)
+        getTableCell('bedroom', 'curtains').innerHTML = curtains
+        getTableCell('bedroom', 'lights').innerHTML = lights
+        getTableCell('bedroom', 'timestamp').innerHTML = e.timeStamp.toFixed(0)
+      })
+
+      const getTableCell = (room, device) => {
+        return document.querySelector(`#${room}-${device}`)
+      }
+
+      const getJSONFromEvent = e => {
+        try {
+          return JSON.parse(e.data)
+        } catch (e) {
+          return null
+        }
+      }
+    </script>
+
+    <style>
+      main {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 1rem;
+      }
+
+      section {
+        border: 1px solid #ccc;
+        border-radius: 0.5rem;
+        padding: 1rem;
+      }
+
+      table {
+        width: 100%;
+      }
+
+      th,
+      td {
+        text-align: center;
+        min-width: 200px;
+      }
+
+      td {
+        padding: 0.5rem;
+      }
+    </style>
+  </body>
+</html>
