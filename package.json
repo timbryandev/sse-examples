@@ -1,0 +1,17 @@
+{
+  "name": "sse-examples",
+  "version": "1.0.0",
+  "description": "A repo containing examples of Server-Sent Events (SSE) in Node.js that you can run and play with",
+  "type": "module",
+  "main": "server.js",
+  "scripts": {
+    "dev": "nodemon server.js",
+    "start": "node server.js"
+  },
+  "author": "TimBryanDev <hi@timbryandev>",
+  "license": "none",
+  "dependencies": {
+    "express": "^4.19.2",
+    "nodemon": "^3.1.0"
+  }
+}
