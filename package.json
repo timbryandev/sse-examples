@@ -5,7 +5,8 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
-    "dev": "nodemon server.js",
+    "dev-01": "cd 01-basic-live-users && nodemon server.js",
+    "dev-02": "cd 02-complex-smart-home && nodemon server.js",
     "start": "node server.js"
   },
   "author": "TimBryanDev <hi@timbryandev>",

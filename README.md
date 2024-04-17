@@ -14,10 +14,7 @@ For more detailed information and context, please refer to the related article o
 
 ## Getting Started
 
-Here are the steps to initialise, install, and run the app:
-
-1. Choose a branch, named after the example you're interested in
-   - `01-basic-live-users`
-   - `02-complex-smart-home`
-2. Install the dependencies: `pnpm install`
-3. Run the app: `pnpm dev` for live reloading, or `pnpm start` for static mode.
+1. Install the dependencies: `pnpm install`
+2. Run the app: `pnpm dev-xx`, replacing xx with the exercise you're interested in. For example
+   - `pnpm dev-01` for `01-basic-live-users`
+   - `pnpm dev-02` for `02-complex-smart-home`
