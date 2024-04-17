@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-GB">
   <head>
     <title>Live Users</title>
@@ -11,36 +11,36 @@
     <p>Live user count: <span id="data">[counting users]</span></p>
 
     <script>
-      const stateContainer = document.querySelector('#state')
-      const userCountContainer = document.querySelector('#data')
+      const stateContainer = document.querySelector("#state");
+      const userCountContainer = document.querySelector("#data");
 
       // Subscribing to our express endpoint using the native EventSource
-      const source = new EventSource('/live-users')
+      const source = new EventSource("/live-users");
 
       // This is the magic - whenever a "message" event fires
       // we will pull the data from the event and dump it on the page
       // in our userCountEl container
-      source.addEventListener('message', function (e) {
-        userCountContainer.innerHTML = e.data
-      })
+      source.addEventListener("message", function (e) {
+        userCountContainer.innerHTML = e.data;
+      });
 
       // The next two event listeners are just for dumping the state of the
       // connection in the DOM for troubleshooting/loading states
-      source.addEventListener('open', function (e) {
-        stateContainer.innerHTML = 'Connected'
-      })
+      source.addEventListener("open", function (e) {
+        stateContainer.innerHTML = "Connected";
+      });
 
       // If the connection is closed, we will update the state in the DOM
       // and close the connection
-      source.addEventListener('error', function (e) {
+      source.addEventListener("error", function (e) {
         if (e.eventPhase == EventSource.CLOSED) {
-          source.close()
+          source.close();
         }
 
         if (e.target.readyState == EventSource.CLOSED) {
-          stateContainer.innerHTML = 'Disconnected'
+          stateContainer.innerHTML = "Disconnected";
         }
-      })
+      });
     </script>
   </body>
 </html>
