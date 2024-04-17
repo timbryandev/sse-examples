@@ -1,10 +1,10 @@
-# Server-Side Events (SSE) Learning Repository
+# Server-Sent Events (SSE) Learning Repository
 
-This repository is designed to assist in learning about Server-Side Events (SSE). It includes code examples that you can install and run to experiment with.
+This repository is designed to assist in learning about Server-sent Events (SSE). It includes code examples that you can install and run to experiment with.
 
 ## Related Article
 
-For more detailed information and context, please refer to the related article on Notion: [Server-side events (SSE)](https://www.notion.so/gathercontent/Server-side-events-SSE-27e292de948448da95c19d2a50cb9f65)
+For more detailed information and context, please refer to the related article on Notion: [Server-sent events (SSE)](https://www.notion.so/gathercontent/Server-sent-events-SSE-27e292de948448da95c19d2a50cb9f65)
 
 ## Prerequisites
 
