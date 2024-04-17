@@ -5,14 +5,17 @@
   "type": "module",
   "main": "server.js",
   "scripts": {
+    "format": "prettier --write .",
     "dev-01": "cd 01-basic-live-users && nodemon server.js",
-    "dev-02": "cd 02-complex-smart-home && nodemon server.js",
-    "start": "node server.js"
+    "dev-02": "cd 02-complex-smart-home && nodemon server.js"
   },
   "author": "TimBryanDev <hi@timbryandev>",
   "license": "none",
   "dependencies": {
     "express": "^4.19.2",
     "nodemon": "^3.1.0"
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5"
   }
 }
